@@ -1,0 +1,25 @@
+{
+  "name": "@shack-js/auto-routes-loader",
+  "version": "1.0.0",
+  "description": "loader that can auto generate routes for react",
+  "main": "dist/loader.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shack-js/auto-routes-loader.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shack-js/auto-routes-loader/issues"
+  },
+  "homepage": "https://github.com/shack-js/auto-routes-loader#readme",
+  "devDependencies": {
+    "@types/loader-utils": "^2.0.3",
+    "@types/node": "^18.8.5",
+    "typescript": "^4.8.4"
+  }
+}
