@@ -1,10 +1,17 @@
 # @shack-js/auto-routes-loader
 loader that can auto generate routes for react and react-router, inspired by Next.JS
 
-# basic usage
+## basic usage
 
 put page component files inside folder `pages`, each file has default export 
 
+## use cli
+
+```
+npx @shack-js/
+```
+
+## use loader
 
 in `webpack.config.js`
 ```
@@ -13,8 +20,18 @@ module.exports = {
     rules:[
       ...,
       {
+        test: /\.m?js$/,
+        /* important: shack-get-routes needs to be compiled if you target more browsers */
+        exclude: /(node_modules|bower_components)(?<!shack-get-routes\.js)$/, 
+        use: {
+          loader: 'babel-loader',
+          options: {
+            ...
+          }
+        }
+      },
+      {
         test: /shack-get-routes\.js$/,
-        exclude: /(node_modules|bower_components)/,
         use: {
           loader: '@shack-js/auto-routes-loader',
         }
@@ -54,10 +71,23 @@ createRoot(el).render(<BrowserRouter>
 
 change pages folder: use `folder` option in webpack config
 
+** important: shack-get-routes needs to be compiled by babel if you target more browsers **
+
 ```
       {
+        test: /\.m?js$/,
+        /* important: shack-get-routes needs to be compiled if you target more browsers */
+        exclude: /(node_modules|bower_components)(?<!shack-get-routes\.js)$/, 
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
+      },
+      /* use this loader */
+      {
         test: /shack-get-routes\.js$/,
-        exclude: /(node_modules|bower_components)/,
         use: {
           loader: '@shack-js/auto-routes-loader',
           options: {
