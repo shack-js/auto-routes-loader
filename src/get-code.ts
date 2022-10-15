@@ -1,23 +1,28 @@
 import { readdir, stat } from 'fs/promises'
-import { join } from 'path'
+import { join, relative } from 'path'
 
 export default getCode
 
-async function getCode(folder: string) {
+async function getCode(folder: string, target = '') {
   let { pathNameDic, routes } = await getMeta(folder), lines = [
     `import React, { lazy, createElement } from 'react'`,
     `import { Outlet } from 'react-router-dom'`,
     `export default ()=>{`
   ], json = JSON.stringify(routes)
-  
+
   for (let [file, name] of pathNameDic.entries()) {
-    lines.push(`let ${name} = lazy(()=>import(${JSON.stringify(file)}))`)
+    lines.push(`let ${name} = lazy(()=>import(${JSON.stringify(relativePath(file))}))`)
     json = json.replaceAll(JSON.stringify(file), `<${name} />`)
   }
   json = json.replaceAll(`"element":""`, `"element": <Outlet />`)
   lines.push(`return ${json}`)
   lines.push(`}`)
   return lines.join('\n')
+
+  function relativePath(file: string) {
+    let rtn = relative(target, file).replaceAll('\\', '/')
+    return rtn.startsWith('.') ? rtn : './' + rtn
+  }
 }
 
 type MetaItem = Partial<{

@@ -7,8 +7,25 @@ put page component files inside folder `pages`, each file has default export
 
 ## use cli
 
+`npx @shack-js/auto-routes-loader <pages-folder> <target-file>`
+
 ```
-npx @shack-js/
+npx @shack-js/auto-routes-loader src/pages src/test-get-routes.js
+
+```
+
+and then import default function from the file and it will return routes
+
+```
+...
+
+import { useRoutes } from "react-router-dom"
+import getRoutes from './test-get-routes'
+let routes = getRoutes()
+const App = () => {
+  return useRoutes(routes)
+}
+...
 ```
 
 ## use loader

@@ -1,9 +1,9 @@
 {
   "name": "@shack-js/auto-routes-loader",
-  "version": "1.0.5",
+  "version": "1.0.9",
   "description": "loader that can auto generate routes for react",
   "main": "dist/loader.js",
-  "cli": "dist/cli.js",
+  "bin": "dist/cli.js",
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
