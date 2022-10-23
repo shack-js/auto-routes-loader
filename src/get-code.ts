@@ -20,8 +20,10 @@ async function getCode(folder: string, target = '') {
   return lines.join('\n')
 
   function relativePath(file: string) {
+    if (!target) return file
     let rtn = relative(target, file).replaceAll('\\', '/')
-    return rtn.startsWith('.') ? rtn : './' + rtn
+    rtn = rtn.startsWith('.') ? rtn : './' + rtn
+    return rtn.replace(/\.[^/.]+$/, "")
   }
 }
 

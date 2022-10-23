@@ -5,7 +5,7 @@ loader that can auto generate routes for react and react-router, inspired by Nex
 
 put page component files inside folder `pages`, each file has default export 
 
-## use cli
+### use cli
 
 `npx @shack-js/auto-routes-loader <pages-folder> <target-file>`
 
@@ -28,7 +28,11 @@ const App = () => {
 ...
 ```
 
-## use loader
+### use loader
+
+```
+npm i @shack-js/auto-routes-loader -D
+```
 
 in `webpack.config.js`
 ```
