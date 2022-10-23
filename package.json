@@ -1,6 +1,6 @@
 {
   "name": "@shack-js/auto-routes-loader",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "loader that can auto generate routes for react",
   "main": "dist/loader.js",
   "bin": "dist/cli.js",
@@ -23,5 +23,8 @@
     "@types/loader-utils": "^2.0.3",
     "@types/node": "^18.8.5",
     "typescript": "^4.8.4"
+  },
+  "engines" : { 
+    "node" : ">=15"
   }
 }
