@@ -43,7 +43,7 @@ module.exports = {
       {
         test: /\.m?js$/,
         /* important: shack-get-routes needs to be compiled if you target more browsers */
-        exclude: /(node_modules|bower_components)(?<!shack-get-routes\.js)$/, 
+        exclude: /(node_modules|bower_components).*(?<!shack-get-routes\.js)$/, 
         use: {
           loader: 'babel-loader',
           options: {
@@ -98,7 +98,7 @@ change pages folder: use `folder` option in webpack config
       {
         test: /\.m?js$/,
         /* important: shack-get-routes needs to be compiled if you target more browsers */
-        exclude: /(node_modules|bower_components)(?<!shack-get-routes\.js)$/, 
+        exclude: /(node_modules|bower_components).*(?<!shack-get-routes\.js)$/, 
         use: {
           loader: 'babel-loader',
           options: {
