@@ -5,17 +5,19 @@ export default getCode
 
 async function getCode(folder: string, target = '') {
   let { pathNameDic, routes } = await getMeta(folder), lines = [
-    `import React, { lazy, createElement } from 'react'`,
+    `import React, { lazy } from 'react'`,
     `import { Outlet } from 'react-router-dom'`,
+    ``,
     `export default ()=>{`
-  ], json = JSON.stringify(routes)
+  ], json = JSON.stringify(routes, null, 2)
 
   for (let [file, name] of pathNameDic.entries()) {
-    lines.push(`let ${name} = lazy(()=>import(${JSON.stringify(relativePath(file))}))`)
+    lines.push(`  let ${name} = lazy(()=>import(${JSON.stringify(relativePath(file))}))`)
     json = json.replaceAll(JSON.stringify(file), `<${name} />`)
   }
-  json = json.replaceAll(`"element":""`, `"element": <Outlet />`)
-  lines.push(`return ${json}`)
+  json = json.replaceAll(`"element": ""`, `"element": <Outlet />`)
+  lines.push(``)
+  lines.push(`  return ${json}`)
   lines.push(`}`)
   return lines.join('\n')
 
