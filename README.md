@@ -1,11 +1,15 @@
 # @shack-js/auto-routes-loader
 loader that can auto generate routes for react and react-router, inspired by Next.JS
 
-## basic usage
+给 react + react-router 项目自动生成路由信息的 loader，灵感来源于 Next.JS
 
-put page component files inside folder `pages`, each file has default export 
+## basic usage | 基本使用
 
-### use cli
+put `page` component files inside folder `pages`, each file has default export 
+
+把 `页面` 组件文件放到 `pages` 文件夹，每个文件都使用 default 导出
+
+### use cli | 使用命令行
 
 `npx @shack-js/auto-routes-loader <pages-folder> <target-file>`
 
@@ -15,6 +19,8 @@ npx @shack-js/auto-routes-loader src/pages src/test-get-routes.js
 ```
 
 and then import default function from the file and it will return routes
+
+然后从生成文件引入导出的函数，运行生成路由信息并使用
 
 ```
 ...
@@ -28,7 +34,7 @@ const App = () => {
 ...
 ```
 
-### use loader
+### use loader | 以 webpack loader 方式使用
 
 ```
 npm i @shack-js/auto-routes-loader -D
@@ -88,16 +94,17 @@ createRoot(el).render(<BrowserRouter>
 
 ```
 
-## details
+## details | 细节 
 
 change pages folder: use `folder` option in webpack config
 
-** important: shack-get-routes needs to be compiled by babel if you target more browsers **
+调整存放页面的文件夹路径： 修改 loader 的 `folder` 参数
 
 ```
       {
         test: /\.m?js$/,
-        /* important: shack-get-routes needs to be compiled if you target more browsers */
+        /* important: shack-get-routes needs to be compiled */
+        /* 重要: shack-get-routes 需要走 babel */
         exclude: /(node_modules|bower_components).*(?<!shack-get-routes\.js)$/, 
         use: {
           loader: 'babel-loader',
@@ -119,6 +126,8 @@ change pages folder: use `folder` option in webpack config
 ```
 
 use layouts: put a `_layout.js` file in a folder, all files under the folder will share the layout, child pages shall appear where `Outlet` locates, example code:
+
+使用模板： 在 `_layout.js` 中导出模板，模板中使用 `Outlet` 指定页面内容的位置
 
 ```
 // pages/_layout.js
